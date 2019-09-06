@@ -1,13 +1,13 @@
 class not_SMBus:
     """not_SMBus
 
+    :param *args: Unused, only exists to prevent errors when used as a drop in for SMBus
+
     :param ~microcontroller.pin SCL: The pin the i2c SCL line is connected to. If not defined, defaults to board.SCL
 
     :param ~microcontroller.pin SDA: The pin the i2c SDA line is connected to. If not defined, defaults to board.SDA
-    
-    :param *args: Unused, only exists to prevent errors when used as a drop in for SMBus
     """
-    def __init__(self, SCL=None, SDA=None, *args):
+    def __init__(self, *args, SCL=None, SDA=None):
         import board
         import busio
 
