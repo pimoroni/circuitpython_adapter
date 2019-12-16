@@ -6,6 +6,7 @@ This library aims to provide a translation layer from SMBus calls to CircuitPyth
 
 * `write_i2c_block_data`
 * `read_i2c_block_data`
+* `readfrom_mem`
 
 # Example
 
@@ -17,6 +18,6 @@ i2c_bus = SMBus(1)
 
 Using CircuitPython Adapter:
 ```python
-from circuitpython_adapter import not_SMBus as SMBus
+from pimoroni_circuitpython_adapter import not_SMBus as SMBus
 i2c_bus = SMBus(1)
 ```
