@@ -41,4 +41,10 @@ class not_SMBus:
             self.i2c.unlock()
 
     def readfrom_mem(self, i2c_address, register, num_bytes):
-        return read_i2c_block_data(i2c_address, register, num_bytes)
+        return self.read_i2c_block_data(i2c_address, register, num_bytes)
+
+    def write_byte_data(self, i2c_address, register, value):
+        return self.write_i2c_block_data(i2c_address, register, [value])
+    
+    def read_byte_data(self, i2c_address, register):
+        return self.read_i2c_block_data(i2c_address, register, 1)[0]
