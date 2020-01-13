@@ -6,18 +6,23 @@ class not_SMBus:
     :param ~microcontroller.pin SCL: The pin the i2c SCL line is connected to. If not defined, defaults to board.SCL
 
     :param ~microcontroller.pin SDA: The pin the i2c SDA line is connected to. If not defined, defaults to board.SDA
+
+    :param I2C: An I2C instance. If not defined, defaults to creating a new I2C instance
     """
-    def __init__(self, *args, SCL=None, SDA=None):
+    def __init__(self, *args, SCL=None, SDA=None, I2C=None):
         import board
         import busio
 
-        if SCL is None:
-            SCL = board.SCL
-        
-        if SDA is None:
-            SDA = board.SDA
-        
-        self.i2c = busio.I2C(SCL, SDA)
+        if I2C is None:
+            if SCL is None:
+                SCL = board.SCL
+            
+            if SDA is None:
+                SDA = board.SDA
+            
+            self.i2c = busio.I2C(SCL, SDA)
+        else:
+            self.i2c = I2C
 
     def write_i2c_block_data(self, i2c_address, register, values):
         while not self.i2c.try_lock():
