@@ -37,9 +37,8 @@ class not_SMBus:
         while not self.i2c.try_lock():
             pass
         try:
-            self.i2c.writeto(i2c_address, bytes([register]), stop=False)
             buffer = bytearray(bit_width)
-            self.i2c.readfrom_into(i2c_address, buffer)
+            self.i2c.writeto_then_readfrom(i2c_address, bytes([register]), buffer)
             return list(buffer)
 
         finally:
